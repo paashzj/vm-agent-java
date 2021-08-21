@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" monitorInterval="10">
+    <Appenders>
+        <RollingFile name="RollingFile" fileName="logs/vm-agent.log"
+                     filePattern="logs/vm-agent-%d{yyyy-MM-dd HH}.log">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd,HH:mm:ss,SSSXXX}(%r):%4p%X[%t#%T]-->%m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20">
+
+            </DefaultRolloverStrategy>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="RollingFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
