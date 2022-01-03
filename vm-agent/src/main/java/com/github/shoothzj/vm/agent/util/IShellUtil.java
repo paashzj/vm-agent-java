@@ -7,6 +7,7 @@ import com.github.shoothzj.vm.agent.module.SshShellResult;
  */
 public interface IShellUtil {
 
-    SshShellResult execCommand(String host, int port, String username, String password, String command) throws Exception;
+    SshShellResult execCommand(String host, int port,
+                               String username, String password, String command) throws Exception;
 
 }

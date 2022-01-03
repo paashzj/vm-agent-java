@@ -22,11 +22,13 @@ public class MinaShellUtil implements IShellUtil {
     private final int timeoutMs = VmConfig.SSH_TIMEOUT_SECONDS * 1000;
 
     @Override
-    public SshShellResult execCommand(String host, int port, String username, String password, String command) throws Exception {
+    public SshShellResult execCommand(String host, int port,
+                                      String username, String password, String command) throws Exception {
         final SshShellResult shellResult = new SshShellResult();
         final SshClient sshClient = SshClient.setUpDefaultClient();
         sshClient.start();
-        try (ClientSession session = sshClient.connect(username, host, port).verify(timeoutMs, TimeUnit.MILLISECONDS).getClientSession()) {
+        try (ClientSession session = sshClient.connect(username, host, port)
+                .verify(timeoutMs, TimeUnit.MILLISECONDS).getClientSession()) {
             session.addPasswordIdentity(password);
             session.auth().verify(timeoutMs, TimeUnit.MILLISECONDS);
             try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

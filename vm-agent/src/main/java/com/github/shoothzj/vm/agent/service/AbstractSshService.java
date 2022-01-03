@@ -4,8 +4,6 @@ import com.github.shoothzj.vm.agent.constant.Const;
 import com.github.shoothzj.vm.agent.module.SshShellResult;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.List;
-
 /**
  * @author hezhangjian
  */

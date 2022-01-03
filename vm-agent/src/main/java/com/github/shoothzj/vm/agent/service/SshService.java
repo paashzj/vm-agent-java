@@ -20,6 +20,8 @@ public class SshService extends AbstractSshService {
 
     @Override
     public SshShellResult execCommand(String command) throws Exception{
-        return shellUtil.execCommand(VmConfig.SSH_HOST, VmConfig.SSH_PORT, VmConfig.SSH_USER, VmConfig.SSH_PASSWORD, command);
+
+        return shellUtil.execCommand(VmConfig.SSH_HOST, VmConfig.SSH_PORT,
+                VmConfig.SSH_USER, VmConfig.SSH_PASSWORD, command);
     }
 }

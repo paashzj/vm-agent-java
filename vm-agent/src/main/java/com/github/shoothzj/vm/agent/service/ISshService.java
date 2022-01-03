@@ -2,8 +2,6 @@ package com.github.shoothzj.vm.agent.service;
 
 import com.github.shoothzj.vm.agent.module.SshShellResult;
 
-import java.util.List;
-
 /**
  * @author hezhangjian
  */

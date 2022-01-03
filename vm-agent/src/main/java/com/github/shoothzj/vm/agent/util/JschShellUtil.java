@@ -17,7 +17,8 @@ import java.util.concurrent.TimeUnit;
 public class JschShellUtil implements IShellUtil {
 
     @Override
-    public SshShellResult execCommand(String host, int port, String username, String password, String command) throws Exception {
+    public SshShellResult execCommand(String host, int port,
+                                      String username, String password, String command) throws Exception {
         final SshShellResult shellResult = new SshShellResult();
         Session session = null;
         ChannelExec channel = null;

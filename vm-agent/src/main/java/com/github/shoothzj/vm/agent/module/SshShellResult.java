@@ -19,10 +19,12 @@ public class SshShellResult {
 
     @Override
     public String toString() {
-        return "SshShellResult{" +
-                "returnCode=" + returnCode +
-                ", outputContent='" + outputContent + '\'' +
-                ", errorContent='" + errorContent + '\'' +
-                '}';
+        return "SshShellResult{" + "returnCode="
+                + returnCode
+                + ", outputContent='"
+                + outputContent + '\''
+                + ", errorContent='"
+                + errorContent + '\''
+                + '}';
     }
 }

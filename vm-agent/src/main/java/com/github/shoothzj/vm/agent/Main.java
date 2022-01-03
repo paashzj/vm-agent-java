@@ -20,21 +20,23 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class Main {
 
+    static final ScheduledExecutorService EXECUTOR_SERVICE =
+            Executors.newSingleThreadScheduledExecutor(new DefaultThreadFactory("command-runner"));
+
     public static void main(String[] args) {
         System.out.println("Hello vm agent");
         final OperationSystem operationSystem = OsUtil.getOs();
         if (operationSystem.equals(OperationSystem.MAC)) {
             LogUtil.configureLog();
         }
-        final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor(new DefaultThreadFactory("command-runner"));
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             System.err.println("shutdown");
-            executorService.shutdownNow();
+            EXECUTOR_SERVICE.shutdownNow();
             System.exit(0);
         }));
         final Injector injector = Guice.createInjector(new GuiceModule());
         final VmCommand vmCommand = injector.getInstance(VmCommand.class);
-        executorService.scheduleWithFixedDelay(vmCommand, 0, VmConfig.FIX_DELAY_SECONDS, TimeUnit.SECONDS);
+        EXECUTOR_SERVICE.scheduleWithFixedDelay(vmCommand, 0, VmConfig.FIX_DELAY_SECONDS, TimeUnit.SECONDS);
 
     }
 
