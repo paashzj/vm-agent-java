@@ -1,10 +1,5 @@
-cd "$(dirname "$0")"
+#!/bin/bash
 
-cd ..
-
-echo `pwd`
-
-mkdir /opt/sh/logs
-
-java -Xmx256M -Xms256M -XX:MaxDirectMemorySize=128M -Dlog4j.configurationFile=/opt/sh/conf/log4j2.xml -jar /opt/sh/vm-agent.jar >/opt/sh/logs/console.log 2>/opt/sh/logs/error.log
+DIR="$( cd "$( dirname "$0"  )" && pwd  )"
+bash -x $DIR/start-daemon.sh
 tail -f /dev/null
