@@ -18,6 +18,10 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
         with:
@@ -28,3 +32,31 @@ jobs:
         with:
           push: true
           tags: ttbb/vm-agent:java
+      - name: Save Docker Images
+        run: docker pull ttbb/vm-agent:java;docker save ttbb/vm-agent:java -o vm-agent.tar.gz
+      - uses: dev-drprasad/delete-tag-and-release@v0.2.0
+        with:
+          delete_release: true
+          tag_name: latest_docker_image
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_GITHUB_TOKEN }}
+
+      - name: Tag release
+        uses: tvdias/github-tagger@v0.0.1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          tag: latest_docker_image
+
+      # Creates the new release with the binary as a release asset.
+      # If the previous Action was skipped, then this keeps the same tag as the
+      # previous release.
+      - name: Create new release
+        uses: softprops/action-gh-release@v1
+        with:
+          body: "Latest docker image"
+          draft: false
+          name: "latest docker image"
+          tag_name: latest_docker_image
+          files: vm-agent
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_GITHUB_TOKEN }}
