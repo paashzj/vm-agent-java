@@ -1,9 +1,6 @@
 name: Release
 
-on:
-  push:
-    tags:
-      - '*'
+on: push
 
 permissions:
   contents: write
@@ -57,6 +54,6 @@ jobs:
           draft: false
           name: "latest docker image"
           tag_name: latest_docker_image
-          files: vm-agent
+          files: vm-agent.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_GITHUB_TOKEN }}
