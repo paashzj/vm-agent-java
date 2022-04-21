@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.github.shoothzj</groupId>
         <artifactId>java-dependency</artifactId>
-        <version>3.1.21</version>
+        <version>3.1.25</version>
     </parent>
 
     <artifactId>vm-agent-parent</artifactId>
@@ -16,11 +16,6 @@
         <module>vm-agent</module>
     </modules>
     <packaging>pom</packaging>
-
-    <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -31,7 +26,7 @@
         <dependency>
             <groupId>com.github.shoothzj</groupId>
             <artifactId>java-tool</artifactId>
-            <version>3.1.9</version>
+            <version>3.1.12</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -57,16 +52,16 @@
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
-                <version>4.5.2.0</version>
+                <version>4.6.0.0</version>
                 <configuration>
                     <xmlOutput>true</xmlOutput>
-                    <failOnError>false</failOnError>
+                    <failOnError>true</failOnError>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.7</version>
+                <version>0.8.8</version>
                 <executions>
                     <execution>
                         <goals>
